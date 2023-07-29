@@ -91,8 +91,34 @@ public class LinkedList {
         return size;
     }
 
+    public int[] toArray(){
+        int[] array = new int[size];
+        var curr = first;
+        int index = 0;
+        while (curr != null){
+            array[index++] = curr.value;
+            curr = curr.next;
+        }
+        return array;
+    }
+
+    public void reverse(){
+        if(isEmpty()) return;
+        Node prev = null;
+        var curr = first;
+        while (curr != null){
+            var tmp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = tmp;
+        }
+        last = first;
+        last.next = null;
+        first = prev;
+    }
+
     private class Node {
-        private int value;
+        private final int value;
 
         private Node next;
 
