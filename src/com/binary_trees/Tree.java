@@ -41,4 +41,50 @@ public class Tree {
             }
         }
     }
+
+    public boolean find(int value){
+        var current =  root;
+        while (current != null){
+            if(value < current.value)
+                current = current.leftChild;
+            else if(value > current.value)
+                current = current.rightChild;
+            else return true;
+        }
+        return false;
+    }
+
+    public void preOrderTraversal(){
+        preOrderTraversal(root);
+    }
+
+    private void preOrderTraversal(Node root){
+        if (root == null)
+            return;
+        System.out.println(root);
+        preOrderTraversal(root.leftChild);
+        preOrderTraversal(root.rightChild);
+    }
+
+    public void inOrderTraversal(){
+        inOrderTraversal(root);
+    }
+
+    private void inOrderTraversal(Node root){
+        if (root == null)
+            return;
+        preOrderTraversal(root.leftChild);
+        System.out.println(root);
+        preOrderTraversal(root.rightChild);
+    }
+
+    private void postOrderTraversal(Node root){
+        if(root == null)
+            return;
+        preOrderTraversal(root.leftChild);
+        preOrderTraversal(root.rightChild);
+        System.out.println(root);
+    }
+
+
 }
