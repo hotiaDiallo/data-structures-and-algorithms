@@ -128,6 +128,25 @@ public class Tree {
         }
         return curr;
     }
+
+    public boolean equal(Tree other){
+        if (other == null)
+            return false;
+
+        return equal(root, other.root);
+    }
+
+    private boolean equal(Node first, Node second){
+        if (first == null && second == null)
+            return true;
+
+        if(first != null && second != null)
+            return first.value == second.value &&
+                    equal(first.leftChild, second.leftChild) &&
+                    equal(first.rightChild, second.rightChild);
+
+        return false;
+    }
     private boolean isLeaf(){
         return root.leftChild == null && root.rightChild == null;
     }
