@@ -85,6 +85,52 @@ public class Tree {
         preOrderTraversal(root.rightChild);
         System.out.println(root);
     }
+    public void postOrderTraversal(){
+        postOrderTraversal(root);
+    }
+
+    public int height(){
+        return height(root);
+    }
+
+    private int height(Node root){
+        if(root == null)
+            return -1;
+        if(isLeaf())
+            return 0;
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
+    public int min(){
+        return min(root);
+    }
+
+    //If not BST
+    private int min(Node root){
+        if (root == null)
+            return Integer.MAX_VALUE;
+        if(isLeaf())
+            return root.value;
+        var minLeft = min(root.leftChild);
+        var minRight = min(root.rightChild);
+        return Math.min(
+                root.value,
+                Math.min(minLeft, minRight)
+        );
+    }
+
+    public Node minBST(){
+        if(root == null)
+            return null;
+        var curr = root;
+        while (curr.leftChild != null){
+            curr = curr.leftChild;
+        }
+        return curr;
+    }
+    private boolean isLeaf(){
+        return root.leftChild == null && root.rightChild == null;
+    }
 
 
 }
