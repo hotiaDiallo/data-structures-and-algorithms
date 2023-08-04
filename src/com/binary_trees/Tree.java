@@ -1,5 +1,9 @@
 package com.binary_trees;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Tree {
     private class Node{
         private int value;
@@ -161,6 +165,25 @@ public class Tree {
 
         return isBinarySearchTree(root.leftChild, min, root.value - 1)
                 && isBinarySearchTree(root.rightChild, root.value + 1, max);
+    }
+
+    public List<Integer> nodeAtKthDistance(int k){
+        List<Integer> values = new ArrayList<>();
+        nodeAtKthDistance(root, k, values);
+        return values;
+    }
+
+    private void nodeAtKthDistance(Node root, int k, List<Integer> values){
+        if(root == null)
+            return;
+
+        if(k==0){
+            values.add(root.value);
+            return;
+        }
+
+        nodeAtKthDistance(root.leftChild, k - 1, values);
+        nodeAtKthDistance(root.rightChild, k - 1, values);
     }
 
     public void swap(){
